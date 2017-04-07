@@ -12,11 +12,11 @@ namespace Shared.Entity
         public Description Description {get; private set;}
         public DateTimeOffset ScheduledFor {get; private set;}
 
-        public static Meetup Schedule(Name name, Description description, DateTimeOffset scheduledFor)
+        public static Meetup Schedule(Guid id, Name name, Description description, DateTimeOffset scheduledFor)
         {
             return new Meetup
             {
-                Id = Guid.NewGuid(),
+                Id = id,
                 Name = name,
                 Description = description,
                 ScheduledFor = scheduledFor
@@ -49,7 +49,7 @@ namespace Shared.Entity
         {
             reader.ReadStartElement();
             reader.ReadStartElement("Id");
-            Id = Guid.Parse(reader.ReadElementContentAsString());
+            Id = Guid.Parse(reader.ReadContentAsString());
             reader.ReadEndElement();
 
             reader.ReadStartElement("Name");

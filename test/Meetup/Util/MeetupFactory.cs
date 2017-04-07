@@ -13,7 +13,7 @@ namespace Meetup.Util
 
         public static Shared.Entity.Meetup UpcomingMeetup()
         {
-            return Shared.Entity.Meetup.Schedule(
+            return Shared.Entity.Meetup.Schedule(Guid.NewGuid(), 
                 Name.FromString("Name"),
                 Description.FromString("Description"),
                 DateTimeOffset.Parse("01-01-2020"));
@@ -21,7 +21,7 @@ namespace Meetup.Util
 
         public static Shared.Entity.Meetup PastMeetup()
         {
-            return Shared.Entity.Meetup.Schedule(
+            return Shared.Entity.Meetup.Schedule(Guid.NewGuid(),
                 Name.FromString("Name"),
                 Description.FromString("Description"),
                 DateTimeOffset.Parse("01-01-2017"));

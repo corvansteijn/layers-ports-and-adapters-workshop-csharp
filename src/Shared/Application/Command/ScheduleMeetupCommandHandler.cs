@@ -15,6 +15,8 @@ namespace Shared.Application.Command
         public void Handle(string name, string description, string scheduledFor)
         {
             meetupRepository.Add(Meetup.Schedule(
+            Guid id = Guid.NewGuid();
+            meetupRepository.Add(Meetup.Schedule(id,
                 Name.FromString(name),
                 Description.FromString(description), 
                 DateTimeOffset.Parse(scheduledFor)));            
