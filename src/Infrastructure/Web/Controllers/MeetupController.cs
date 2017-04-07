@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
-
+using Shared;
+using Shared.Application;
 using Shared.Entity;
 using Web.Models;
 
@@ -8,10 +9,12 @@ namespace Web.Controllers
 {
     public class MeetupController : Controller
     {
+        private readonly ScheduleMeetupService _service;
         private readonly MeetupRepository meetupRepository;
 
-        public MeetupController(MeetupRepository meetupRepository)
+        public MeetupController(ScheduleMeetupService service, MeetupRepository meetupRepository)
         {
+            _service = service;
             this.meetupRepository = meetupRepository;
         }
 
@@ -57,12 +60,14 @@ namespace Web.Controllers
             if(!ModelState.IsValid)
             {
                 return View(meetup);
-            }       
+            }
 
-            meetupRepository.Add(Meetup.Schedule(
-                Name.FromString(meetup.Name),
-                Description.FromString(meetup.Description), 
-                meetup.ScheduledFor));  
+            _service.ScheduleMeetup(new MeetupScheduleContext
+            {
+                Name = meetup.Name,
+                Description = meetup.Description,
+                ScheduledFor = meetup.ScheduledFor,
+            });
 
             return RedirectToAction("Index");
         }
