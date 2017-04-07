@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.1" />
+    <PackageReference Include="Microsoft.DotNet.Watcher.Tools" Version="1.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.0" />
+    <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
+    <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="1.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="wwwroot\lib\bootstrap\dist\css" />
+    <Folder Include="wwwroot\lib\bootstrap\dist\fonts" />
+    <Folder Include="wwwroot\lib\bootstrap\dist\js" />
+    <Folder Include="wwwroot\lib\bootstrap\fonts" />
+    <Folder Include="wwwroot\lib\bootstrap\grunt" />
+    <Folder Include="wwwroot\lib\bootstrap\js" />
+    <Folder Include="wwwroot\lib\bootstrap\less\mixins" />
+    <Folder Include="wwwroot\lib\bootstrap\nuget" />
+    <Folder Include="wwwroot\lib\jquery-validation-unobtrusive" />
+    <Folder Include="wwwroot\lib\jquery-validation\build" />
+    <Folder Include="wwwroot\lib\jquery-validation\dist" />
+    <Folder Include="wwwroot\lib\jquery-validation\src\additional" />
+    <Folder Include="wwwroot\lib\jquery-validation\src\localization" />
+    <Folder Include="wwwroot\lib\jquery\dist" />
+    <Folder Include="wwwroot\lib\jquery\src\ajax\var" />
+    <Folder Include="wwwroot\lib\jquery\src\attributes" />
+    <Folder Include="wwwroot\lib\jquery\src\core\var" />
+    <Folder Include="wwwroot\lib\jquery\src\css\var" />
+    <Folder Include="wwwroot\lib\jquery\src\data\var" />
+    <Folder Include="wwwroot\lib\jquery\src\effects" />
+    <Folder Include="wwwroot\lib\jquery\src\event" />
+    <Folder Include="wwwroot\lib\jquery\src\exports" />
+    <Folder Include="wwwroot\lib\jquery\src\manipulation\var" />
+    <Folder Include="wwwroot\lib\jquery\src\queue" />
+    <Folder Include="wwwroot\lib\jquery\src\traversing\var" />
+    <Folder Include="wwwroot\lib\jquery\src\var" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\Shared.csproj" />
+  </ItemGroup>
+</Project>
