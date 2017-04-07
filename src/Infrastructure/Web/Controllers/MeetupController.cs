@@ -30,7 +30,7 @@ namespace Web.Controllers
             });
         }
 
-        public IActionResult Details(long id)
+        public IActionResult Details(Guid id)
         {
             MeetupDto meetup = provider.GetMeetup(id);
 

@@ -21,16 +21,12 @@ namespace Shared.Infrastructure
         {
             var meetups = GetPersistedMeetups();
 
-            var id = meetups.Count() + 1;
-
-            meetup.SetId(id);
-
             meetups.Add(meetup);
 
             PersistMeetups(meetups);
         }
 
-        public Meetup GetById(long id)
+        public Meetup GetById(Guid id)
         {
             var meetups = GetPersistedMeetups();
 

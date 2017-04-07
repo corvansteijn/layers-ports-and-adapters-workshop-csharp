@@ -27,7 +27,7 @@ namespace Meetup
             var originalMeetup = MeetupFactory.SomeMeetup();
             meetupRepository.Add(originalMeetup);
 
-            originalMeetup.Id.Should().BeGreaterThan(0);
+            originalMeetup.Id.Should().NotBe(Guid.Empty);
 
             var restoredMeetup = meetupRepository.GetById(originalMeetup.Id);
             restoredMeetup.ShouldBeEquivalentTo(originalMeetup);

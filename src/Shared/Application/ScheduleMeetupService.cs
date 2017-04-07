@@ -14,7 +14,7 @@ namespace Shared.Application
             this.meetupProvider = meetupProvider;
         }
 
-        public MeetupDto GetMeetup(long identifier)
+        public MeetupDto GetMeetup(Guid identifier)
         {
             return new MeetupDto(meetupProvider.GetById(identifier));
         }

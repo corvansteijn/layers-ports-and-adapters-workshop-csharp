@@ -7,7 +7,7 @@ namespace Shared.Entity
 {
     public class Meetup : IXmlSerializable
     {
-        public long Id {get; private set;}
+        public Guid Id {get; private set;}
         public Name Name {get; private set;}
         public Description Description {get; private set;}
         public DateTimeOffset ScheduledFor {get; private set;}
@@ -16,6 +16,7 @@ namespace Shared.Entity
         {
             return new Meetup
             {
+                Id = Guid.NewGuid(),
                 Name = name,
                 Description = description,
                 ScheduledFor = scheduledFor
@@ -27,15 +28,11 @@ namespace Shared.Entity
             return now < ScheduledFor;
         }
 
-        public void SetId(long id)
-        {
-            Id = id;
-        }
 
-        public void WriteXml (XmlWriter writer)
+        void IXmlSerializable.WriteXml(XmlWriter writer)
         {
             writer.WriteStartElement("Id");
-            writer.WriteValue(Id);
+            writer.WriteValue(Id.ToString());
             writer.WriteEndElement();
             writer.WriteStartElement("Name");
             Name.WriteXml(writer);
@@ -48,11 +45,11 @@ namespace Shared.Entity
             writer.WriteEndElement();                                        
         }
 
-        public void ReadXml (XmlReader reader)
+        void IXmlSerializable.ReadXml(XmlReader reader)
         {
             reader.ReadStartElement();
             reader.ReadStartElement("Id");
-            Id = reader.ReadContentAsLong();
+            Id = Guid.Parse(reader.ReadElementContentAsString());
             reader.ReadEndElement();
 
             reader.ReadStartElement("Name");
@@ -73,7 +70,7 @@ namespace Shared.Entity
             reader.ReadEndElement();
         }
 
-        public XmlSchema GetSchema()
+        XmlSchema IXmlSerializable.GetSchema()
         {
             return(null);
         }

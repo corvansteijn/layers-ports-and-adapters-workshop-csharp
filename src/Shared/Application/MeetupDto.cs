@@ -1,4 +1,5 @@
-﻿using Shared.Entity;
+﻿using System;
+using Shared.Entity;
 
 namespace Shared.Application
 {
@@ -9,12 +10,12 @@ namespace Shared.Application
             Id = meetup.Id;
             Name = meetup.Name.ToString();
             Description = meetup.Description.ToString();
-            ScheduledFor = meetup.ScheduledFor.ToString();
+            ScheduledFor = meetup.ScheduledFor;
         }
 
-        public long Id { get; private set; }
+        public Guid Id { get; private set; }
         public string Name { get; private set; }
         public string Description { get; private set; }
-        public string ScheduledFor { get; private set; }
+        public DateTimeOffset ScheduledFor { get; private set; }
     }
 }
