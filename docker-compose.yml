@@ -16,3 +16,8 @@ services:
             - .:/app
         depends_on:
             - web
+    rabbitmq:
+        image: rabbitmq:3-management
+        ports:
+            # management UI:
+            - 15672:15672
