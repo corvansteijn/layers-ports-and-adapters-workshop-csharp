@@ -1,31 +1,36 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Shared.Entity;
 
 namespace Shared.Application
 {
-    public class ScheduleMeetupService
+    public class ScheduleMeetupProvider
     {
-        private readonly MeetupRepository meetupRepository;
+        private readonly IMeetupRepository meetupProvider;
 
-        public ScheduleMeetupService(MeetupRepository meetupRepository)
+        public ScheduleMeetupProvider(IMeetupRepository meetupProvider)
         {
-            this.meetupRepository = meetupRepository;
+            this.meetupProvider = meetupProvider;
         }
 
-        public void ScheduleMeetup(MeetupScheduleContext meetup)
+        public MeetupDto GetMeetup(long identifier)
         {
-            meetupRepository.Add(Meetup.Schedule(
-                Name.FromString(meetup.Name),
-                Description.FromString(meetup.Description),
-                meetup.ScheduledFor));
-
+            return new MeetupDto(meetupProvider.GetById(identifier));
         }
-    }
 
-    public class MeetupScheduleContext
-    {
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public DateTimeOffset ScheduledFor { get; set; }
+        public IEnumerable<MeetupDto> GetUpcomingMeetups(DateTime now)
+        {
+            return meetupProvider.GetUpcomingMeetups(now)
+                .Select(m => new MeetupDto(m))
+                .ToArray();
+        }
+
+        public IEnumerable<MeetupDto> GetPastMeetups(DateTime now)
+        {
+            return meetupProvider.GetPastMeetups(now)
+                .Select(m => new MeetupDto(m))
+                .ToArray();
+        }
     }
 }

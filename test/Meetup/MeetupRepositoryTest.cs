@@ -6,13 +6,14 @@ using FluentAssertions;
 using Shared.Entity;
 
 using Meetup.Util;
+using Shared.Infrastructure;
 
 namespace Meetup
 {
     public class MeetupRepositoryTest
     {
         private string filePath;
-        private MeetupRepository meetupRepository;
+        private IMeetupRepository meetupRepository;
 
         public MeetupRepositoryTest() 
         {

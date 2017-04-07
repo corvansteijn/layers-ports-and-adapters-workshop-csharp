@@ -9,6 +9,6 @@ namespace Web.Models
     {
         public string Name {get;set;}
         public string Description {get;set;}
-        public DateTimeOffset ScheduledFor {get;set;}
+        public string ScheduledFor {get;set;}
     }
 }

@@ -1,12 +1,11 @@
 using System.Collections.Generic;
-
-using Shared.Entity;
+using Shared.Application;
 
 namespace Web.Models
 {
     public class MeetupOverview
     {
-        public IEnumerable<Meetup> UpcomingMeetups{get;set;}
-        public IEnumerable<Meetup> PastMeetups{get;set;}
+        public IEnumerable<MeetupDto> UpcomingMeetups{get;set;}
+        public IEnumerable<MeetupDto> PastMeetups{get;set;}
     }
 }

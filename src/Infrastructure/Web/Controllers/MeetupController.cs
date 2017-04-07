@@ -1,29 +1,28 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
-using Shared;
 using Shared.Application;
-using Shared.Entity;
+using Shared.Application.Command;
 using Web.Models;
 
 namespace Web.Controllers
 {
     public class MeetupController : Controller
     {
-        private readonly ScheduleMeetupService _service;
-        private readonly MeetupRepository meetupRepository;
+        private readonly ScheduleMeetupCommandHandler scheduleMeetupCommandHandler;
+        private readonly ScheduleMeetupProvider provider;
 
-        public MeetupController(ScheduleMeetupService service, MeetupRepository meetupRepository)
+        public MeetupController(ScheduleMeetupCommandHandler scheduleMeetupCommandHandler, ScheduleMeetupProvider provider)
         {
-            _service = service;
-            this.meetupRepository = meetupRepository;
+            this.scheduleMeetupCommandHandler = scheduleMeetupCommandHandler;
+            this.provider = provider;
         }
 
         public IActionResult Index()
         {
             var now = DateTime.Now;
 
-            var upcomingMeetups = meetupRepository.GetUpcomingMeetups(now);
-            var pastMeetups = meetupRepository.GetPastMeetups(now);
+            var upcomingMeetups = provider.GetUpcomingMeetups(now);
+            var pastMeetups = provider.GetPastMeetups(now);
 
             return View(new MeetupOverview{
                 UpcomingMeetups = upcomingMeetups,
@@ -33,7 +32,7 @@ namespace Web.Controllers
 
         public IActionResult Details(long id)
         {
-            var meetup = meetupRepository.GetById(id);
+            MeetupDto meetup = provider.GetMeetup(id);
 
             return View(meetup);
         }
@@ -62,12 +61,10 @@ namespace Web.Controllers
                 return View(meetup);
             }
 
-            _service.ScheduleMeetup(new MeetupScheduleContext
-            {
-                Name = meetup.Name,
-                Description = meetup.Description,
-                ScheduledFor = meetup.ScheduledFor,
-            });
+            scheduleMeetupCommandHandler.Handle(
+                meetup.Name,
+                meetup.Description,
+                meetup.ScheduledFor);
 
             return RedirectToAction("Index");
         }

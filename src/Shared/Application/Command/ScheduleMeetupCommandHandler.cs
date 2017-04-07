@@ -1,14 +1,13 @@
 using System;
-
 using Shared.Entity;
 
-namespace Shared.Command 
+namespace Shared.Application.Command
 {
     public class ScheduleMeetupCommandHandler
     {
-        private MeetupRepository meetupRepository;
+        private readonly IMeetupRepository meetupRepository;
 
-        public ScheduleMeetupCommandHandler(MeetupRepository meetupRepository)
+        public ScheduleMeetupCommandHandler(IMeetupRepository meetupRepository)
         {
             this.meetupRepository = meetupRepository;
         }

@@ -2,6 +2,7 @@ using System;
 
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.CommandLineUtils;
+using Shared.Application.Command;
 
 namespace Shared.Command
 {

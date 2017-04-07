@@ -1,7 +1,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using Shared.Application;
+using Shared.Application.Command;
 using Shared.Entity;
 using Shared.Command;
+using Shared.Infrastructure;
 
 namespace Shared
 {
@@ -9,8 +11,8 @@ namespace Shared
     {
         public static IServiceCollection AddAppServices(this IServiceCollection services)
         {
-            services.AddTransient<MeetupRepository>(p => new MeetupRepository("//app//var//meetup.txt"));
-            services.AddTransient<ScheduleMeetupService>();
+            services.AddTransient<IMeetupRepository>(p => new MeetupRepository("//app//var//meetup.txt"));
+            services.AddTransient<ScheduleMeetupProvider>();
             services.AddTransient<MeetupApplicationConfig>();
             services.AddTransient<ScheduleMeetupCommandHandler>();
 
